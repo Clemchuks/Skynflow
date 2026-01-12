@@ -1,0 +1,239 @@
+<!-- Optional in Heyflow: place this in the Head Code section -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============  GLOBAL THEME  ============ */
+:root{
+  --primary:#1f2937;    /* dark navy blue text */
+  --accent:#F04D4D;     /* red for alert badge and icon */
+  --bg:#F8F7FA;
+  --icon-bg:#e6f6ff;    /* pale aquamarine behind emojis */
+  --tile-bg:#ffffff;
+  --level:85%;          /* progress control position (0-100%) */
+  font-family:'Poppins',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0}
+
+/* ============  CARD  ============ */
+.card{
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 0 20px #0002;
+  max-width:800px;
+  margin:20px auto;
+  padding:clamp(1rem,3vw,28px);
+}
+
+/* Header */
+.card__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.card__title{font-size:1.6rem;font-weight:700;color:var(--primary)}
+.card__badge{padding:.35em 1.2em;background:#FCE3E3;color:var(--accent);font-size:1rem;border-radius:999px}
+
+/* Photo */
+.card__photo{text-align:center;margin-bottom:.6rem}
+.card__photo img{max-width:260px;width:100%;height:auto}
+
+/* Progress bar */
+.prog-wrap{background:var(--bg);border-radius:100px;padding:.4em;margin-bottom:.8em}
+.slider{height:.8em;position:relative;border-radius:inherit;
+        background:linear-gradient(90deg,#96d9ff 0%,#b7f5a8 25%,#f9eb7c 55%,#e96b58 82%)}
+.slider__tick{position:absolute;top:0;bottom:0;width:2px;background:var(--bg)}
+.slider__tick:nth-child(1){left:25%}
+.slider__tick:nth-child(2){left:50%}
+.slider__tick:nth-child(3){left:75%}
+.slider__knob{
+  position:absolute;left:var(--level);top:50%;transform:translate(-50%,-50%);
+  width:2em;height:2em;background:#fff;border:.3em solid #3f485233;border-radius:50%;
+  box-shadow:0 .3em .7em #4442;animation:slide 1.5s ease forwards}
+.slider__label{
+  position:absolute;top:-3em;left:50%;transform:translateX(-50%);
+  background:var(--primary);color:#fff;padding:.4em .8em;border-radius:4px;font-size:.9em;white-space:nowrap;
+  animation:fade 1s ease forwards}
+.slider__label::after{
+  content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:6px solid transparent;border-top-color:var(--primary)}
+@keyframes slide{from{left:0}to{left:var(--level)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.slider__knob,.slider__label{animation:none}}
+
+/* Scale labels */
+.scale{display:flex;justify-content:space-between;font-size:.95rem;color:#666;padding:0 .3rem 1rem}
+.scale .high{color:var(--accent)}
+
+/* Alert panel */
+.alert{
+  display:flex;gap:1rem;align-items:flex-start;background:#FCE3E3;border-radius:12px;
+  padding:1.2rem;margin-bottom:1.6rem}
+.alert svg{width:48px;height:48px;padding:10px;background:#F9BDBD;border-radius:12px}
+.alert strong{display:block;font-size:1.1rem;margin-bottom:4px;color:var(--accent)}
+.alert p{font-size:.95rem;line-height:1.4;color:var(--primary)}
+
+/* Card grid (4 stats) */
+.tile-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:1.5rem;
+}
+.tile{
+  background:var(--tile-bg);border-radius:14px;box-shadow:0 0 8px #0001;
+  display:flex;align-items:center;gap:1.25rem;padding:1.25rem;
+}
+.tile__icon{
+  flex:0 0 64px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;
+  background:var(--icon-bg);border-radius:14px;font-size:34px;line-height:1;
+}
+.tile__copy p{margin:0;font-size:1.02rem;color:var(--primary)}
+.tile__copy h4{margin:.2rem 0 0;font-size:1.4rem;font-weight:700;color:var(--primary)}
+
+/* ============  MOBILE REFINEMENTS  ============ */
+
+/* Base: small screens first */
+@media (max-width: 640px){
+  .card{
+    max-width: 560px;
+    width: 85vw;
+    margin: 14px auto;
+    padding: clamp(.85rem, 3.5vw, 1.1rem);
+    border-radius: 10px;
+    box-shadow: 0 0 14px #0002;
+  }
+
+  .card__head{ margin-bottom:.75rem }
+  .card__title{ font-size:1.25rem }
+  .card__badge{ font-size:.85rem; padding:.28em .9em }
+
+  .card__photo{ margin-bottom:.5rem }
+  .card__photo img{ max-width: 200px }
+
+  .prog-wrap{ padding:.3em; margin-bottom:.6em }
+  .slider{ height:.6em }
+  .slider__knob{
+    width:1.6em; height:1.6em;
+    border:.25em solid #3f485233;
+    box-shadow:0 .25em .55em #4442;
+  }
+  .slider__label{
+    top:-2.4em;
+    font-size:.8em;
+    padding:.32em .6em;
+    border-radius:3px;
+  }
+
+  .scale{ font-size:.85rem; padding:0 .2rem .7rem }
+
+  .alert{
+    gap:.75rem; padding:1rem; margin-bottom:1.1rem; border-radius:10px;
+  }
+  .alert svg{ width:40px; height:40px; padding:8px; border-radius:10px }
+  .alert strong{ font-size:1rem }
+  .alert p{ font-size:.9rem }
+
+  .tile-grid{
+    grid-template-columns: 1fr;
+    gap:1rem;
+  }
+  .tile{
+    padding:1rem; border-radius:12px;
+  }
+  .tile__icon{
+    flex:0 0 52px; width:52px; height:52px; font-size:28px; border-radius:12px;
+  }
+  .tile__copy p{ font-size:.95rem }
+  .tile__copy h4{ font-size:1.2rem }
+}
+
+/* Extra-small devices */
+@media (max-width: 360px){
+  .card{ width: 80vw; padding:.75rem; border-radius:9px }
+  .card__title{ font-size:1.1rem }
+  .card__badge{ font-size:.78rem }
+  .card__photo img{ max-width: 170px }
+  .slider__label{ top:-2.2em; font-size:.78em }
+  .scale{ font-size:.8rem }
+  .tile__icon{ flex-basis:46px; width:46px; height:46px; font-size:24px }
+  .tile__copy p{ font-size:.9rem }
+  .tile__copy h4{ font-size:1.08rem }
+}
+
+</style>
+
+<!-- ============  MARK-UP (ENGLISH)  ============ -->
+<div class="card" lang="en">
+
+  <!-- Header -->
+  <div class="card__head">
+    <h3 class="card__title">Hair Loss Level</h3>
+    <span class="card__badge">High</span>
+  </div>
+
+  <!-- Photo -->
+  <div class="card__photo">
+    <img src="https://assets.prd.heyflow.com/users/r9M32JPckarSxXAf11OKsY8AsqtyRQLR/f2c6738b-63b4-40f6-8efc-7f4017d6e10b/original.png"
+         alt="Hair loss level visualization">
+  </div>
+
+  <!-- Progress -->
+  <div class="prog-wrap">
+    <div class="slider" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85">
+      <span class="slider__tick"></span><span class="slider__tick"></span><span class="slider__tick"></span>
+      <div class="slider__knob">
+        <div class="slider__label">Your level</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scale -->
+  <div class="scale">
+    <p>Low</p><p>Normal</p><p>Medium</p><p class="high">High</p>
+  </div>
+
+  <!-- Alert -->
+  <div class="alert">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#F04D4D" aria-hidden="true">
+      <path d="M12 2A10 10 0 1 0 22 12 10 10 0 0 0 12 2ZM12 19a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 19Zm1-4h-2V7h2Z"/>
+    </svg>
+    <div>
+      <strong>HIGH level</strong>
+      <p>Your hair seems to thin out fast. This is due to high level of DHT, dormant hair follicles and decreased blood flow.</p>
+    </div>
+  </div>
+
+  <!-- Stat tiles -->
+  <div class="tile-grid">
+
+    <div class="tile">
+      <div class="tile__icon">🔍</div>
+      <div class="tile__copy">
+        <p>Impact on appearance:</p>
+        <h4>Noticeable</h4>
+      </div>
+    </div>
+
+    <div class="tile">
+      <div class="tile__icon">📈</div>
+      <div class="tile__copy">
+        <p>Room for improvement</p>
+        <h4>High</h4>
+      </div>
+    </div>
+
+    <div class="tile">
+      <div class="tile__icon">🧬</div>
+      <div class="tile__copy">
+        <p>Type of aging</p>
+        <h4>External</h4>
+      </div>
+    </div>
+
+    <div class="tile">
+      <div class="tile__icon">⚡</div>
+      <div class="tile__copy">
+        <p>Trigger</p>
+        <h4>Sensitivity to DHT</h4>
+      </div>
+    </div>
+
+  </div><!-- /tile-grid -->
+
+</div><!-- /card -->
