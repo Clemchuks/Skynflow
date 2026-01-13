@@ -156,6 +156,55 @@
   .tile__copy h4{ font-size:1.08rem }
 }
 
+
+  /* Optional styling to help it match the screenshot look */
+  .result-card{
+    display:flex; gap:14px; align-items:flex-start;
+    background:#fde7e7; border-radius:14px; padding:18px;
+  }
+  .result-card__icon{
+    width:54px; height:54px; border-radius:14px;
+    background:#f8cfcf; display:grid; place-items:center; flex:0 0 auto;
+  }
+  .result-card__copy strong{ font-size:20px; letter-spacing:.2px; }
+  .result-card__copy p{ margin:6px 0 0; color:#2b2b2b; line-height:1.35; }
+
+  .tile-grid{
+    display:grid; gap:16px;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    margin-top:18px;
+  }
+  .tile{
+    display:flex; gap:14px; align-items:center;
+    background:#fff; border-radius:14px; padding:16px;
+    box-shadow:0 10px 24px rgba(0,0,0,.06);
+  }
+  .tile__icon{
+    width:54px; height:54px; border-radius:14px;
+    display:grid; place-items:center; flex:0 0 auto;
+    background:#eef5ff;
+  }
+  .tile__copy p{ margin:0; color:#5a5a5a; font-size:14px; }
+  .tile__copy h4{ margin:4px 0 0; font-size:20px; }
+
+  /* Icon system */
+  .icon{ width:28px; height:28px; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .icon--info{ width:30px; height:30px; fill:none; stroke:#fff; }
+  .result-card__icon .icon--info circle{ fill:#ef4444; stroke:#ef4444; }
+
+  .tile__icon--shield .icon{ stroke:#f59e0b; }
+  .tile__icon--chart  .icon{ stroke:#22c55e; }
+  .tile__icon--bolt   .icon{ stroke:#3b82f6; }
+  .tile__icon--search .icon{ stroke:#7c3aed; }
+
+  /* Give each tile icon a slightly different soft background */
+  .tile__icon--shield{ background:#fff7ed; }
+  .tile__icon--chart { background:#ecfdf5; }
+  .tile__icon--bolt  { background:#eff6ff; }
+  .tile__icon--search{ background:#f5f3ff; }
+
+
+
 </style>
 
 <!-- ============  MARK-UP (ENGLISH)  ============ -->
@@ -188,51 +237,91 @@
     <p>Low</p><p>Normal</p><p>Medium</p><p class="high">High</p>
   </div>
 
-  <!-- Alert -->
-  <div class="alert">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#F04D4D" aria-hidden="true">
-      <path d="M12 2A10 10 0 1 0 22 12 10 10 0 0 0 12 2ZM12 19a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 19Zm1-4h-2V7h2Z"/>
+  
+   
+<!-- Top alert -->
+<div class="result-card">
+  <div class="result-card__icon" aria-hidden="true">
+    <!-- info icon (red circle on pink tile) -->
+    <svg viewBox="0 0 24 24" class="icon icon--info">
+      <circle cx="12" cy="12" r="10"></circle>
+      <rect x="11" y="10" width="2" height="7" rx="1"></rect>
+      <rect x="11" y="6.5" width="2" height="2" rx="1"></rect>
     </svg>
-    <div>
-      <strong>HIGH level</strong>
-      <p>Your hair seems to thin out fast. This is due to high level of DHT, dormant hair follicles and decreased blood flow.</p>
+  </div>
+
+  <div class="result-card__copy">
+    <strong>HIGH Level</strong>
+    <p>
+      Your skin is aging 40-60% faster than normal for your age. This is caused by severe collagen
+      depletion, stress-induced breakdown, and accumulated UV damage.
+    </p>
+  </div>
+</div>
+
+<!-- Stat tiles -->
+<div class="tile-grid">
+  <div class="tile">
+    <div class="tile__icon tile__icon--shield" aria-hidden="true">
+      <!-- shield + exclamation -->
+      <svg viewBox="0 0 24 24" class="icon">
+        <path d="M12 2 20 6v7c0 5.2-3.4 8.8-8 9-4.6-.2-8-3.8-8-9V6l8-4Z"></path>
+        <path d="M12 7v6"></path>
+        <path d="M12 16.8h.01"></path>
+      </svg>
+    </div>
+    <div class="tile__copy">
+      <p>Aging type</p>
+      <h4>Extrinsic</h4>
     </div>
   </div>
 
-  <!-- Stat tiles -->
-  <div class="tile-grid">
-
-    <div class="tile">
-      <div class="tile__icon">🔍</div>
-      <div class="tile__copy">
-        <p>Impact on appearance:</p>
-        <h4>Noticeable</h4>
-      </div>
+  <div class="tile">
+    <div class="tile__icon tile__icon--chart" aria-hidden="true">
+      <!-- upward chart -->
+      <svg viewBox="0 0 24 24" class="icon">
+        <path d="M4 19V5"></path>
+        <path d="M4 19h16"></path>
+        <path d="M7 16v-4"></path>
+        <path d="M11 16V9"></path>
+        <path d="M15 16v-6"></path>
+        <path d="M19 8l-4 2-4-3-3 2"></path>
+        <path d="M19 8v4"></path>
+      </svg>
     </div>
-
-    <div class="tile">
-      <div class="tile__icon">📈</div>
-      <div class="tile__copy">
-        <p>Room for improvement</p>
-        <h4>High</h4>
-      </div>
+    <div class="tile__copy">
+      <p>Room For Improvement</p>
+      <h4>High</h4>
     </div>
+  </div>
 
-    <div class="tile">
-      <div class="tile__icon">🧬</div>
-      <div class="tile__copy">
-        <p>Type of aging</p>
-        <h4>External</h4>
-      </div>
+  <div class="tile">
+    <div class="tile__icon tile__icon--bolt" aria-hidden="true">
+      <!-- lightning bolt -->
+      <svg viewBox="0 0 24 24" class="icon">
+        <path d="M13 2 4 14h7l-1 8 10-14h-7l0-6Z"></path>
+      </svg>
     </div>
+    <div class="tile__copy">
+      <p>Trigger</p>
+      <h4>Collagen Breakdown</h4>
+    </div>
+  </div>
 
-    <div class="tile">
-      <div class="tile__icon">⚡</div>
-      <div class="tile__copy">
-        <p>Trigger</p>
-        <h4>Sensitivity to DHT</h4>
-      </div>
+  <div class="tile">
+    <div class="tile__icon tile__icon--search" aria-hidden="true">
+      <!-- magnifier -->
+      <svg viewBox="0 0 24 24" class="icon">
+        <circle cx="11" cy="11" r="6"></circle>
+        <path d="M20 20l-3.5-3.5"></path>
+      </svg>
     </div>
+    <div class="tile__copy">
+      <p>Impact on Appearance:</p>
+      <h4>Noticeable</h4>
+    </div>
+  </div>
+</div>
 
   </div><!-- /tile-grid -->
 
