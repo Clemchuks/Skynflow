@@ -20,10 +20,17 @@
   background:#fff;
   border-radius:12px;
   box-shadow:0 0 20px #0002;
-  max-width:800px;
+
+  /* wider like the reference */
+  max-width: 880px;     /* try 1100–1200px */
+  width: min(880px, 94vw);
+
   margin:20px auto;
   padding:clamp(1rem,3vw,28px);
 }
+.card{ margin-left:auto; margin-right:auto; }
+
+
 
 /* Header */
 .card__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
@@ -73,8 +80,9 @@
 .tile-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:1.5rem;
+  gap:1.5rem;margin-top:.5rem;
 }
+
 .tile{
   background:var(--tile-bg);border-radius:14px;box-shadow:0 0 8px #0001;
   display:flex;align-items:center;gap:1.25rem;padding:1.25rem;
@@ -169,11 +177,7 @@
   .result-card__copy strong{ font-size:20px; letter-spacing:.2px; }
   .result-card__copy p{ margin:6px 0 0; color:#2b2b2b; line-height:1.35; }
 
-  .tile-grid{
-    display:grid; gap:16px;
-    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
-    margin-top:18px;
-  }
+  
   .tile{
     display:flex; gap:14px; align-items:center;
     background:#fff; border-radius:14px; padding:16px;
@@ -279,15 +283,39 @@
   <div class="tile">
     <div class="tile__icon tile__icon--chart" aria-hidden="true">
       <!-- upward chart -->
-      <svg viewBox="0 0 24 24" class="icon">
-        <path d="M4 19V5"></path>
-        <path d="M4 19h16"></path>
-        <path d="M7 16v-4"></path>
-        <path d="M11 16V9"></path>
-        <path d="M15 16v-6"></path>
-        <path d="M19 8l-4 2-4-3-3 2"></path>
-        <path d="M19 8v4"></path>
-      </svg>
+      <svg width="56" height="56" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Growth chart icon">
+  <!-- soft rounded background -->
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#EAF7F7"/>
+
+  <!-- subtle inner fade (helps match the soft look) -->
+  <rect x="6" y="6" width="52" height="52" rx="13" fill="#FFFFFF" opacity="0.25"/>
+
+  <!-- arrow (light gray) -->
+  <path d="M18 28 L44 16" fill="none" stroke="#C7CDD3" stroke-width="3" stroke-linecap="round"/>
+  <path d="M44 16 L40.8 16.8 L42.6 20.2 Z" fill="#C7CDD3"/>
+
+  <!-- baseline + tiny shadow -->
+  <rect x="18" y="44" width="30" height="3" rx="1.2" fill="#4B5563"/>
+  <rect x="18" y="47" width="30" height="2" rx="1" fill="#4B5563" opacity="0.35"/>
+
+  <!-- bars (4) -->
+  <!-- bar 1 -->
+  <rect x="20" y="34" width="6" height="10" rx="1.2" fill="#6EDC95"/>
+  <rect x="20" y="34" width="2" height="10" rx="1" fill="#FFFFFF" opacity="0.35"/>
+
+  <!-- bar 2 -->
+  <rect x="28" y="28" width="6" height="16" rx="1.2" fill="#53D481"/>
+  <rect x="28" y="28" width="2" height="16" rx="1" fill="#FFFFFF" opacity="0.35"/>
+
+  <!-- bar 3 -->
+  <rect x="36" y="24" width="6" height="20" rx="1.2" fill="#35CB6C"/>
+  <rect x="36" y="24" width="2" height="20" rx="1" fill="#FFFFFF" opacity="0.35"/>
+
+  <!-- bar 4 -->
+  <rect x="44" y="18" width="6" height="26" rx="1.2" fill="#1FB85A"/>
+  <rect x="44" y="18" width="2" height="26" rx="1" fill="#FFFFFF" opacity="0.30"/>
+</svg>
+
     </div>
     <div class="tile__copy">
       <p>Room For Improvement</p>
