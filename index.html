@@ -382,6 +382,53 @@
   }
 }
 
+/* ===== Fix long paragraph width on mobile (result-card paragraph) ===== */
+@media (max-width: 640px){
+  /* Give text more room */
+  .result-card{
+    gap: 10px !important;
+    padding: 14px !important;
+  }
+
+  /* Shrink icon so paragraph gets more width */
+  .result-card__icon{
+    width: 40px !important;
+    height: 40px !important;
+    flex: 0 0 40px !important;
+    border-radius: 12px !important;
+  }
+  .result-card__icon .icon--info{
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  /* Make the paragraph more readable + allow a wider feel */
+  .result-card__copy{
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+  .result-card__copy p{
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+    margin-top: 6px !important;
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 360px){
+  .result-card__icon{
+    width: 36px !important;
+    height: 36px !important;
+    flex-basis: 36px !important;
+  }
+  .result-card__copy p{
+    font-size: 13px !important;
+    line-height: 1.42 !important;
+  }
+}
+
 </style>
 
 <!-- ============  MARK-UP (ENGLISH)  ============ -->
@@ -389,7 +436,7 @@
 
   <!-- Header -->
   <div class="card__head">
-    <h3 class="card__title">Hair Loss Level</h3>
+    <h3 class="card__title"> Level of Skin Aging</h3>
     <span class="card__badge">High</span>
   </div>
 
@@ -430,8 +477,8 @@
   <div class="result-card__copy">
     <strong>HIGH Level</strong>
     <p>
-      Your skin is aging 40-60% faster than normal for your age. This is caused by severe collagen
-      depletion, stress-induced breakdown, and accumulated UV damage.
+      Your skin may be aging 40–60% faster than what’s considered typical for your age.
+      This can be linked to a faster-than-usual decline in collagen caused by environmental factors, stress, or sun exposure. Some people naturally age faster than others due to genetics, but with the right products and routine, this process can be supported and visibly improved over time.
     </p>
   </div>
 </div>
